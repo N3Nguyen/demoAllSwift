@@ -11,12 +11,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        demoDispatchGroup()
-        fetchDataAsync()
+        demoDispatchGroup()
+//        fetchDataAsync()
         
-        let result = fetchDataSync()
-        Thread.sleep(forTimeInterval:2)
-        print(result)
+//        let result = fetchDataSync()
+//        Thread.sleep(forTimeInterval:2)
+//        print(result)
         print("Tiếp tục với công việc khác")
     }
 
