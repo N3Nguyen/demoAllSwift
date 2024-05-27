@@ -11,15 +11,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        demoDispatchGroup()
+//        demoDispatchGroup()
 //        fetchDataAsync()
+        concurentQueue()
         
 //        let result = fetchDataSync()
 //        Thread.sleep(forTimeInterval:2)
 //        print(result)
         print("Tiếp tục với công việc khác")
     }
-
     
     func ThreadSwift() {
         let queue = DispatchQueue(label: "myQueue")
@@ -30,11 +30,9 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.view.backgroundColor = .red
         }
-        
     }
 
     func demoDispatchGroup() {
-
             let dispatchGroup = DispatchGroup()
 
             dispatchGroup.enter()
@@ -70,5 +68,28 @@ class ViewController: UIViewController {
         }
     }
     
+    func smile(){
+        print("*-_-*")
+    }
+    func love(){
+        print("<3")
+    }
+    
+    func concurentQueue(){
+        let queue = DispatchQueue(label: "ConcurrentQueue", qos: .default, attributes: .concurrent)
+        queue.async {
+            for _ in 1...5 {
+                Thread.sleep(forTimeInterval: 1)
+                self.smile()
+            }
+        }
+        
+        queue.async {
+            for _ in 1...5 {
+                Thread.sleep(forTimeInterval: 1)
+                self.love()
+            }
+        }
+    }
 }
 
