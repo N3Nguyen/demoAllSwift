@@ -8,16 +8,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        demoDispatchGroup()
-//        fetchDataAsync()
-        concurentQueue()
+        //the hien su khac nhau giua tac vu bat dong bo và dong bo
+        //        fetchDataSync()
+        //        fetchDataAsync()
         
-//        let result = fetchDataSync()
-//        Thread.sleep(forTimeInterval:2)
-//        print(result)
+        //The hien tac bu bat dong bo va dispatchGroup
+        //        concurentQueue()
+        //        demoDispatchGroup()
+        
+        //
+        doBackgroundWork()
+        updateUI()
+        //        let result = fetchDataSync()
+        //        Thread.sleep(forTimeInterval:2)
+        //        print(result)
+        
         print("Tiếp tục với công việc khác")
     }
     
@@ -31,24 +39,46 @@ class ViewController: UIViewController {
             self.view.backgroundColor = .red
         }
     }
-
-    func demoDispatchGroup() {
-            let dispatchGroup = DispatchGroup()
-
-            dispatchGroup.enter()
-            for item in 1...10 {
-                print("Load Data \(item)")
-            }
-            dispatchGroup.leave()
-            
-            dispatchGroup.enter()
-            print("Execute Task 2")
-            dispatchGroup.leave()
-            
-            dispatchGroup.notify(queue: .main) {
-                print("Done")
-            }
+    
+    func demoDispatchGroup1() {
+        let queue = DispatchQueue.global()
+        
+        group.enter()
+        queue.async {
+            // Công việc 1
+            print("Task 1 started")
+            sleep(2) // Giả lập công việc mất 2 giây
+            print("Task 1 completed")
+            group.leave()
         }
+        
+        group.enter()
+        queue.async {
+            // Công việc 2
+            print("Task 2 started")
+            sleep(1) // Giả lập công việc mất 1 giây
+            print("Task 2 completed")
+            group.leave()
+        }
+    }
+    
+    func demoDispatchGroup2() {
+        let queue = DispatchQueue.global()
+
+        queue.async(group: group) {
+            // Công việc 1
+            print("Task 1 started")
+            sleep(2)
+            print("Task 1 completed")
+        }
+
+        queue.async(group: group) {
+            // Công việc 2
+            print("Task 2 started")
+            sleep(1)
+            print("Task 2 completed")
+        }
+    }
     
     func requestSomthing() {
         
@@ -57,14 +87,16 @@ class ViewController: UIViewController {
     func fetchDataSync() {
         // tác vụ đồng bộ
         Thread.sleep(forTimeInterval: 2) // Dừng lại trong 2 giây
-        print("Dữ liệu đã được tải xuống (Sync)")
+        print("\(self.love()) fetchDataSyns")
+        print("Current thread: \(Thread.current)")
     }
-
+    
     func fetchDataAsync() {
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .default).async {
             // tác vụ bất đồng bộ
             Thread.sleep(forTimeInterval: 5) // Dừng lại trong 2 giây
-            print("Dữ liệu đã được tải xuống (Async)")
+            print("\(self.smile()) fetchDataAsync")
+            print("Current thread: \(Thread.current)")
         }
     }
     
@@ -76,7 +108,7 @@ class ViewController: UIViewController {
     }
     
     func concurentQueue(){
-        let queue = DispatchQueue(label: "ConcurrentQueue", qos: .default, attributes: .concurrent)
+        let queue = DispatchQueue(label: "hóng ConcurrentQueue", qos: .default, attributes: .concurrent)
         queue.async {
             for _ in 1...5 {
                 Thread.sleep(forTimeInterval: 1)
@@ -88,6 +120,50 @@ class ViewController: UIViewController {
             for _ in 1...5 {
                 Thread.sleep(forTimeInterval: 1)
                 self.love()
+            }
+        }
+        print("Current thread: \(Thread.current)")
+    }
+    
+    func doBackgroundWork() {
+        DispatchQueue.global(qos: .background).async {
+            print("Background thread: \(Thread.current)")
+            if Thread.isMainThread {
+                print("Running on the main thread")
+            } else {
+                print("Running on a background thread")
+            }
+            
+            // Đặt breakpoint ở dòng dưới để kiểm tra luồng
+            let _ = 1 + 1
+        }
+    }
+    
+    func updateUI() {
+        DispatchQueue.main.async {
+            print("Main thread: \(Thread.current)")
+            if Thread.isMainThread {
+                print("Running on the main thread")
+            } else {
+                print("Running on a background thread")
+            }
+            
+            // Đặt breakpoint ở dòng dưới để kiểm tra luồng
+            let _ = 2 + 2
+        }
+    }
+    
+    func qosDispathQueue() {
+        let queue1 = DispatchQueue(label: "qos userInitiated", qos: .userInitiated)
+        let queue2 = DispatchQueue(label: "qos utility", qos: .utility)
+        queue1.async {
+            for i in 0..<10 {
+                print("🔴", i)
+            }
+        }
+        queue2.async {
+            for i in 100..<110 {
+                print("🔵", i)
             }
         }
     }
