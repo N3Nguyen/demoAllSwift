@@ -17,11 +17,11 @@ class ViewController: UIViewController {
         
         //The hien tac bu bat dong bo va dispatchGroup
         //        concurentQueue()
-        //        demoDispatchGroup()
+        demoDispatchGroup1()
         
         //
-        doBackgroundWork()
-        updateUI()
+//        doBackgroundWork()
+//        updateUI()
         //        let result = fetchDataSync()
         //        Thread.sleep(forTimeInterval:2)
         //        print(result)
@@ -41,10 +41,11 @@ class ViewController: UIViewController {
     }
     
     func demoDispatchGroup1() {
+        let group = DispatchGroup()
         let queue = DispatchQueue.global()
         
         group.enter()
-        queue.async {
+        queue.sync {
             // Công việc 1
             print("Task 1 started")
             sleep(2) // Giả lập công việc mất 2 giây
@@ -63,6 +64,7 @@ class ViewController: UIViewController {
     }
     
     func demoDispatchGroup2() {
+        let group = DispatchGroup()
         let queue = DispatchQueue.global()
 
         queue.async(group: group) {
@@ -109,7 +111,7 @@ class ViewController: UIViewController {
     
     func concurentQueue(){
         let queue = DispatchQueue(label: "hóng ConcurrentQueue", qos: .default, attributes: .concurrent)
-        queue.async {
+        queue.sync {
             for _ in 1...5 {
                 Thread.sleep(forTimeInterval: 1)
                 self.smile()
