@@ -25,8 +25,6 @@ class ViewController: UIViewController {
 //        sysnchronousTask()
 //        asynchronousTask()
 //        qosDispathQueue()
-        
-        demoDispatchGroup1()
     }
     
     func fetchDataFromNetwork() {

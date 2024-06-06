@@ -19,7 +19,7 @@
 		C84FF1312BF77663009695C3 /* swiftFunctionsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftFunctionsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C84FF1342BF77663009695C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C84FF1362BF77663009695C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C84FF1382BF77663009695C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C84FF1382BF77663009695C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		C84FF13B2BF77663009695C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C84FF13D2BF77665009695C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C84FF1402BF77665009695C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,7 +59,6 @@
 				C84FF1482BF77671009695C3 /* ThreadSwift */,
 				C84FF1342BF77663009695C3 /* AppDelegate.swift */,
 				C84FF1362BF77663009695C3 /* SceneDelegate.swift */,
-				C84FF1382BF77663009695C3 /* ViewController.swift */,
 				C84FF13A2BF77663009695C3 /* Main.storyboard */,
 				C84FF13D2BF77665009695C3 /* Assets.xcassets */,
 				C84FF13F2BF77665009695C3 /* LaunchScreen.storyboard */,
@@ -71,6 +70,7 @@
 		C84FF1482BF77671009695C3 /* ThreadSwift */ = {
 			isa = PBXGroup;
 			children = (
+				C84FF1382BF77663009695C3 /* ViewController.swift */,
 			);
 			path = ThreadSwift;
 			sourceTree = "<group>";
