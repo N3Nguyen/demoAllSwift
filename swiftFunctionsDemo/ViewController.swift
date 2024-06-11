@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         //VD về độ ưu tiên Qos trong global queue
 //        concurentQueue()
         
+        
         //VD sysn và asyn
 //        sysnchronousTask()
 //        asynchronousTask()
