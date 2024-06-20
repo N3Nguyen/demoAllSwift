@@ -9,6 +9,7 @@ import UIKit
 
 protocol passDataDelegate: AnyObject {
     func didReceiveData(_ data: String?)
+    
 }
 
 class ViewControllerDelegate: UIViewController {
@@ -45,8 +46,23 @@ class ViewControllerDelegate: UIViewController {
         // phát hành thông báo
         NotificationCenter.default.post(name: .didReceiveData, object: nil, userInfo: ["data": dataToSend])
         navigationController?.popViewController(animated: true)
+        
+        //phát hành thông báo nhận object
+        let movie1 = MovieEntity(id: 1, title: "Movie 1")
+        let movie2 = MovieEntity(id: 2, title: "Movie 2")
+        //        var movies = [MovieEntity]()
+        //        for i in 1...10 {
+        //            movies.append(MovieEntity(id: i, title: "Movie \(i)"))
+        //        }
+        let listMovies = ListMovies(page: 1, results: [movie1, movie2], totalResults: 2, totalPages: 1)
+        NotificationCenter.default.post(name: .listMoviesNotification, object: nil, userInfo: ["listMovies": listMovies])
+        
+//        let listMovies = ListMovies(page: 1, results: movies, totalResults: 10, totalPages: 1)
+//        DispatchQueue.global(qos: .background).async {
+//            NotificationCenter.default.post(name: .listMoviesNotification, object: nil, userInfo: ["listMovies": listMovies])
+//        }
     }
-
+    
     @IBAction func ClosuresData(_ sender: Any) {
         // Ví dụ: Dữ liệu bạn muốn gửi ngược lại
         let dataToSend = passDataTextView.text.description

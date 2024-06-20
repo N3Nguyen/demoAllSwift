@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewControllerA: UIViewController {
-
+    
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var dataPassTextView: UITextView!
     @IBOutlet weak var addButton: UIButton!
@@ -18,8 +18,13 @@ class ViewControllerA: UIViewController {
     var gradientLayer: CAGradientLayer!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Đăng ký lắng nghe 1 thông báo từ DidReceiveData
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .didReceiveData, object: nil)
-//        customeButton(button: addButton)
+        
+        //Đăng ký lắng nghe 1 thông báo truyền object
+        NotificationCenter.default.addObserver(self, selector: #selector(handleListMoviesNotification(_:)), name: .listMoviesNotification, object: nil)
+        
+        //        customeButton(button: addButton)
         
         // Sử dụng lớp AnimatedBackgroundView cho background
         let animatedBackgroundView = AnimatedBackgroundView(frame: view.bounds)
@@ -39,14 +44,30 @@ class ViewControllerA: UIViewController {
         }
     }
     
-    func egg() {
-        //        performSegue(withIdentifier: "showViewControllerBSegue", sender: self)
-    }
-    
     @objc func handleNotification(_ notification: Notification) {
         if let userInfo = notification.userInfo, let data = userInfo["data"] as? String {
             dataPassTextView.text = data
         }
+    }
+    
+    @objc func handleListMoviesNotification(_ notification: Notification) {
+        if let listMovies = notification.userInfo?["listMovies"] as? ListMovies {
+            //in ra dữ liệu thu được từ view gửi dữ liệu
+            print("Received ListMovies - Page: \(listMovies.page), Total Results: \(listMovies.totalResults ?? 0)")
+            for movie in listMovies.results {
+                print("Movie ID: \(movie.id), Title: \(movie.title)")
+            }
+        }
+        
+        //trường hợp nhiều phần tử
+//        DispatchQueue.main.async {
+//            if let listMovies = notification.userInfo?["listMovies"] as? ListMovies {
+//                print("Received ListMovies - Page: \(listMovies.page), Total Results: \(listMovies.totalResults ?? 0)")
+//                for movie in listMovies.results {
+//                    print("Movie ID: \(movie.id), Title: \(movie.title)")
+//                }
+//            }
+//        }
     }
     
     deinit {
@@ -65,11 +86,9 @@ class ViewControllerA: UIViewController {
     }
     
     func passDataDelegate() {
-        let a = dataPassTextView.text.description
         // Khởi tạo ViewControllerDelegate
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let viewControllerDelegate = storyboard.instantiateViewController(withIdentifier: "showDelagate") as? ViewControllerDelegate {
-            viewControllerDelegate.passDataTextView.text = a
             // Thiết lập ViewControllerA làm delegate của ViewControllerDelegate
             viewControllerDelegate.delegate = self
             // Hiển thị ViewControllerDelegate
@@ -78,14 +97,7 @@ class ViewControllerA: UIViewController {
     }
     
     func passDataNotifi() {
-        // Khởi tạo ViewControllerDelegate
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewControllerDelegate = storyboard.instantiateViewController(withIdentifier: "showDelagate") as? ViewControllerDelegate {
-            // phát hành thông báo
-            NotificationCenter.default.post(name: .didReceiveData, object: nil, userInfo: ["data": dataPassTextView.text])
-            // Hiển thị ViewControllerDelegate
-            navigationController?.pushViewController(viewControllerDelegate, animated: true)
-        }
+        passDataBasic()
     }
     
     func passDataClosures() {
@@ -102,20 +114,19 @@ class ViewControllerA: UIViewController {
     }
     
     @IBAction func addPassData(_ sender: Any) {
-        passDataBasic()
-//        passDataDelegate()
+        passDataDelegate()
         UIView.animate(withDuration: 0.1, animations: {
-            self.addButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.addButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         }) { _ in
-            UIView.animate(withDuration: 0.1) {
+            UIView.animate(withDuration: 2) {
                 self.addButton.transform = CGAffineTransform.identity
             }
         }
-//        Thread.sleep(forTimeInterval: 1)
     }
     @IBAction func getDataNoti(_ sender: Any) {
         passDataNotifi()
     }
+    
     @IBAction func getDataClosure(_ sender: Any) {
         passDataClosures()
     }
