@@ -16,6 +16,7 @@
 		C8A2FFBE2C24462500EA47F3 /* ViewControllerProtocolBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A2FFBD2C24462500EA47F3 /* ViewControllerProtocolBasic.swift */; };
 		C8A2FFC02C2449C600EA47F3 /* protocolBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A2FFBF2C2449C600EA47F3 /* protocolBasic.swift */; };
 		C8A2FFC22C2452B800EA47F3 /* listObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A2FFC12C2452B800EA47F3 /* listObject.swift */; };
+		C8A2FFC52C247DC200EA47F3 /* lifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A2FFC42C247DC200EA47F3 /* lifeApp.swift */; };
 		C8A322EB2C12149F00CE3D28 /* ViewControllerA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A322EA2C12149F00CE3D28 /* ViewControllerA.swift */; };
 		C8A322ED2C1214AC00CE3D28 /* ViewControllerB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A322EC2C1214AC00CE3D28 /* ViewControllerB.swift */; };
 		C8A322EF2C13282C00CE3D28 /* ViewControllerC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A322EE2C13282C00CE3D28 /* ViewControllerC.swift */; };
@@ -37,6 +38,7 @@
 		C8A2FFBD2C24462500EA47F3 /* ViewControllerProtocolBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocolBasic.swift; sourceTree = "<group>"; };
 		C8A2FFBF2C2449C600EA47F3 /* protocolBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocolBasic.swift; sourceTree = "<group>"; };
 		C8A2FFC12C2452B800EA47F3 /* listObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listObject.swift; sourceTree = "<group>"; };
+		C8A2FFC42C247DC200EA47F3 /* lifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifeApp.swift; sourceTree = "<group>"; };
 		C8A322EA2C12149F00CE3D28 /* ViewControllerA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerA.swift; sourceTree = "<group>"; };
 		C8A322EC2C1214AC00CE3D28 /* ViewControllerB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerB.swift; sourceTree = "<group>"; };
 		C8A322EE2C13282C00CE3D28 /* ViewControllerC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerC.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		C8A2FFC32C245D8C00EA47F3 /* lifeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C8A2FFC42C247DC200EA47F3 /* lifeApp.swift */,
 			);
 			path = lifeViewController;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				C8A322F12C1329DF00CE3D28 /* ViewControllerDelegate.swift in Sources */,
 				C8A322F32C171D0900CE3D28 /* File.swift in Sources */,
 				C84FF1352BF77663009695C3 /* AppDelegate.swift in Sources */,
+				C8A2FFC52C247DC200EA47F3 /* lifeApp.swift in Sources */,
 				C84FF1372BF77663009695C3 /* SceneDelegate.swift in Sources */,
 				C8A2FFC02C2449C600EA47F3 /* protocolBasic.swift in Sources */,
 				C8A2FFC22C2452B800EA47F3 /* listObject.swift in Sources */,
