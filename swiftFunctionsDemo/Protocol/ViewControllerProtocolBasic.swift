@@ -38,8 +38,8 @@ class ViewControllerProtocolBasic: UIViewController, SomeProtocol {
 
 }
 
-extension ViewControllerProtocolBasic: DefaultProtocol{
-    func requiredMethod() {
-        print("Default implementation of requiredMethod")
-    }
-}
+//extension ViewControllerProtocolBasic: DefaultProtocol{
+//    func requiredMethod() {
+//        print("Default implementation of requiredMethod")
+//    }
+//}

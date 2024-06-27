@@ -19,7 +19,7 @@ class ViewControllerDelegate: UIViewController {
     @IBOutlet weak var passDataClosureButton: UIButton!
     
     @IBOutlet weak var passDataTextView: UITextView!
-    weak var delegate: passDataDelegate?
+    weak var delegateData: passDataDelegate?
     var dataPass: String?
     
     var completionHandler: ((String) -> Void)?
@@ -37,7 +37,7 @@ class ViewControllerDelegate: UIViewController {
     
     @IBAction func passData(_ sender: Any) {
         let a = passDataTextView.text.description
-        delegate?.didReceiveData(a)
+        delegateData?.didReceiveData(a)
         navigationController?.popViewController(animated: true)
     }
     

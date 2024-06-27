@@ -90,7 +90,7 @@ class ViewControllerA: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let viewControllerDelegate = storyboard.instantiateViewController(withIdentifier: "showDelagate") as? ViewControllerDelegate {
             // Thiết lập ViewControllerA làm delegate của ViewControllerDelegate
-            viewControllerDelegate.delegate = self
+            viewControllerDelegate.delegateData = self
             // Hiển thị ViewControllerDelegate
             navigationController?.pushViewController(viewControllerDelegate, animated: true)
         }
@@ -129,6 +129,12 @@ class ViewControllerA: UIViewController {
     
     @IBAction func getDataClosure(_ sender: Any) {
         passDataClosures()
+    }
+    @IBAction func lifeCycleViewController(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let lifeCycleViewController = storyboard.instantiateViewController(withIdentifier: "lifeCycleA") as? LifeCycleAViewController {
+            navigationController?.pushViewController(lifeCycleViewController, animated: true)
+        }
     }
     
 }
